@@ -1,4 +1,4 @@
-# ai-esg-toolAI ESG Tool
+# AI ESG Tool
 
 An AI-powered ESG analysis assistant built on Google Gemini, designed to help
 Indian companies and NGOs navigate sustainability reporting frameworks including
@@ -59,20 +59,3 @@ Emissions, GRI 306 Waste, GRI 403 Occupational Health and Safety, GRI 413
 Local Communities, and India-specific context including informal sector
 integration and Plastic Waste Management Rules.
 
-
-ROADMAP
-
-[x] Day 1: First API call — ESG domain specialist
-[ ] Day 2: Prompt engineering — structured GRI extraction
-[ ] Day 3: RAG — Q&A over real ESG documents
-[ ] Day 4-9: Hero project — BRSR compliance assistant
-[ ] Day 10-11: MCP server and deployment
-[ ] Day 13: Public demo
-
-
-BACKGROUND
-
-Built as part of an intensive 15-day AI engineering sprint, combining
-3+ years of hands-on sustainability work with emerging AI engineering skills.
-
-Targeting: AI for social good, ESG tech, and beneficial AI deployment.
