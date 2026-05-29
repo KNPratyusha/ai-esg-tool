@@ -29,25 +29,6 @@ TECH STACK
 - GRI / SASB / BRSR domain knowledge
 
 
-SETUP
-
-1. Clone the repo
-   git clone https://github.com/KNPratyusha/ai-esg-tool.git
-   cd ai-esg-tool
-
-2. Create and activate virtual environment
-   python3 -m venv venv
-   source venv/bin/activate
-
-3. Install dependencies
-   pip3 install google-genai
-
-4. Set your Gemini API key (free at aistudio.google.com)
-   export GEMINI_API_KEY="your-key-here"
-
-5. Run
-   python3 first_gemini_call.py
-
 
 EXAMPLE OUTPUT
 
