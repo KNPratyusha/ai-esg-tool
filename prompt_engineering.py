@@ -63,17 +63,24 @@ No explanation. No markdown. Just valid JSON.
         print("Raw response:", raw)
         return None
 
-sample_report = """
-Our company generated 2,400 metric tonnes of waste during FY2023-24.
-Of this, 1,800 MT was recycled, a 75% recovery rate.
-Our 65 vehicles consumed 180,000 litres of diesel.
-We recorded 12 Lost Time Injuries. We have 380 employees.
-"""
+# Show one example on first run so users know what to ask
+print("\n=== Example (how to ask Priya) ===")
+example_q = "What is BRSR and why should a waste management company care?"
+print(f"You: {example_q}")
+example_answer = ask_priya(example_q)
+print(f"\nPriya: {example_answer}\n")
+print("-" * 60)
+print("That was an example. Now ask your own question below.")
+print("-" * 60)
 
-print("=== Asking Priya ===")
-print(ask_priya("What is BRSR and why should a waste management company care?"))
+# Interactive mode
+print("\n=== Ask Priya ===")
+print("Type your ESG question and press Enter. Type 'quit' to exit.\n")
 
-print("\n=== ESG Data Extraction ===")
-result = extract_esg_data(sample_report)
-if result:
-    print(json.dumps(result, indent=2))
+while True:
+    question = input("You: ")
+    if question.lower() == "quit":
+        print("Goodbye!")
+        break
+    answer = ask_priya(question)
+    print(f"\nPriya: {answer}\n")
