@@ -4,14 +4,14 @@ Measures whether Raga's answers are actually grounded in the retrieved BRSR
 excerpts — the property that matters most in a regulated domain — and whether it
 correctly *refuses* questions whose answers aren't in the document.
 
-Resilient to transient API errors (429/5xx): each model call is retried with
-exponential backoff, and any case that still fails is recorded and skipped so a
-single hiccup never sinks the whole run.
+Built for flaky free tiers: calls are paced (--sleep) to stay under rate limits,
+each call is retried with exponential backoff on 429/5xx, and any case that still
+fails is recorded and skipped so one hiccup never sinks the whole run.
 
 Run from the repo root:
 
     export GEMINI_API_KEY="..."              # free key at https://aistudio.google.com
-    python -m evals.faithfulness_eval        # full suite
+    python -m evals.faithfulness_eval        # full suite (paced for free tier)
     python -m evals.faithfulness_eval --max 4   # quick smoke test
 """
 import os
@@ -45,7 +45,7 @@ def load_cases(max_cases=None):
     return cases[:max_cases] if max_cases else cases
 
 
-def with_retry(fn, *args, attempts=5, base=2.0, **kwargs):
+def with_retry(fn, *args, attempts=6, base=2.0, **kwargs):
     """Call fn, retrying transient API errors (rate limits / 5xx) with backoff."""
     for i in range(attempts):
         try:
@@ -84,6 +84,8 @@ def main():
     ap = argparse.ArgumentParser(description="Faithfulness eval for Raga (BRSR RAG).")
     ap.add_argument("--max", type=int, default=None, help="limit number of cases")
     ap.add_argument("--pdf", default=os.environ.get("BRSR_PDF", "brsr.pdf"))
+    ap.add_argument("--sleep", type=float, default=4.0,
+                    help="seconds to pause between cases — keeps you under free-tier rate limits")
     args = ap.parse_args()
 
     # Validate environment *before* importing modules that build a Gemini client.
@@ -103,6 +105,8 @@ def main():
     rows = []
 
     for i, case in enumerate(cases, 1):
+        if i > 1 and args.sleep:
+            time.sleep(args.sleep)  # pace calls to respect free-tier rate limits
         q, kind = case["question"], case["type"]
         print(f"\n[{i}/{len(cases)}] ({kind}) {q}")
         row = {"id": case.get("id", f"case_{i}"), "type": kind, "question": q}
@@ -150,7 +154,7 @@ def main():
     print("=" * 56)
     print(f" Cases: {len(rows)}  ({len(answerable)} answerable, {len(oos)} out-of-scope)")
     if errored:
-        print(f" Skipped (API errors):              {len(errored)}")
+        print(f" Skipped (API errors):              {len(errored)}  (try a larger --sleep)")
     print("\n Answerable:")
     print(f"   Answer rate (didn't over-refuse): {pct(len(answered), len(answerable))}")
     print(f"   Fully grounded (LLM-judge):       {pct(len(fully_supported), len(answered))}")

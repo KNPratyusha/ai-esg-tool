@@ -22,9 +22,12 @@ Faithfulness is scored `SUPPORTED=1.0`, `PARTIAL=0.5`, `UNSUPPORTED=0.0` and ave
 
 ```bash
 export GEMINI_API_KEY="..."                 # free at https://aistudio.google.com
-python -m evals.faithfulness_eval           # full suite (12 cases)
+python -m evals.faithfulness_eval           # full suite (paced for the free tier)
 python -m evals.faithfulness_eval --max 4   # quick smoke test
+python -m evals.faithfulness_eval --sleep 8 # pace harder if the free tier still 429s
 ```
+
+> On Gemini's **free tier** the suite paces itself (`--sleep`, default 4s) and retries rate-limit errors with backoff. If you still see cases skipped, raise `--sleep`.
 
 Per-case results — including the judge's reasoning and any unsupported claims — are written to `evals/results.json` (commit it as evidence if you like).
 
