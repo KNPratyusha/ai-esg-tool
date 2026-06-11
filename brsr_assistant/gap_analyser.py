@@ -23,10 +23,13 @@ RULES:
 
 # Load BRSR into vector store (reuse Raga from Day 3)
 def load_brsr_vectorstore():
-    brsr_path = "/Users/kanchinagapratyusha/Documents/ai-agent-projects/ai-esg-tool/ai-esg-tool/brsr.pdf"
+    brsr_path = os.environ.get("BRSR_PDF", "brsr.pdf")
     if not os.path.exists(brsr_path):
-        brsr_path = "/Users/kanchinagapratyusha/Documents/ai-agent-projects/ai-esg-tool/ai-esg-tool/brsr.pdf"
-    
+        raise FileNotFoundError(
+            f"BRSR PDF not found at '{brsr_path}'. "
+            "Place brsr.pdf in the repo root or set the BRSR_PDF environment variable."
+        )
+
     print("Loading BRSR document...")
     doc = fitz.open(brsr_path)
     full_text = ""
