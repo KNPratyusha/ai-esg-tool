@@ -9,6 +9,9 @@ from google.genai import types
 # ── Setup ──────────────────────────────────────────────────────────────────
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
+# Model is overridable via GEMINI_MODEL — handy when one model's daily quota runs out.
+MODEL = os.environ.get("GEMINI_MODEL", "models/gemini-2.5-flash")
+
 SYSTEM_PROMPT = """You are Priya, an expert ESG analyst specialising in Indian 
 sustainability reporting — GRI Standards, BRSR, SASB, GHG Protocol.
 
@@ -126,7 +129,7 @@ Answer based only on the context provided above.
 """
     
     response = client.models.generate_content(
-        model="models/gemini-2.5-flash",
+        model=MODEL,
         config=types.GenerateContentConfig(
             system_instruction=SYSTEM_PROMPT
         ),
