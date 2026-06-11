@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Eval artifacts (regenerated on each run)
+evals/results.json
+
+# OS
+.DS_Store

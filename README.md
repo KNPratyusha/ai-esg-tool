@@ -146,7 +146,7 @@ python brsr_assistant/gap_analyser.py  # 4 · Raga — automated gap analysis
 
 ## 🗺️ Roadmap
 
-- [ ] **Faithfulness eval harness** — automatically score whether each answer's claims are actually supported by its cited page (precision/recall on citations).
+- [x] **Faithfulness eval harness** — scores answer groundedness + refusal accuracy with an LLM-as-judge → see [`evals/`](evals/). *(run it to populate the scorecard with your numbers)*
 - [ ] **Streamlit UI** so non-technical compliance teams can use it.
 - [ ] Extend the grounded corpus beyond BRSR to **GRI** and **SASB**.
 

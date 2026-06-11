@@ -1,0 +1,12 @@
+{"id": "ghg", "type": "answerable", "question": "What greenhouse gas emissions must a company disclose under BRSR?", "must_mention": ["scope 1", "scope 2"]}
+{"id": "water", "type": "answerable", "question": "What water-related disclosures does BRSR require?", "must_mention": ["water", "withdrawal"]}
+{"id": "waste", "type": "answerable", "question": "How should a company report the waste it generates from operations?", "must_mention": ["waste"]}
+{"id": "safety", "type": "answerable", "question": "What occupational health and safety metrics must be disclosed?", "must_mention": ["safety"]}
+{"id": "wellbeing", "type": "answerable", "question": "What employee wellbeing benefits need to be reported under BRSR?", "must_mention": ["employee"]}
+{"id": "energy", "type": "answerable", "question": "What must companies disclose about their energy consumption?", "must_mention": ["energy"]}
+{"id": "env-disclosures", "type": "answerable", "question": "What are the key environmental disclosures required?", "must_mention": ["emission"]}
+{"id": "anti-corruption", "type": "answerable", "question": "What anti-corruption or whistleblower disclosures does BRSR require?", "must_mention": ["corruption"]}
+{"id": "oos-gdp", "type": "out_of_scope", "question": "What was India's GDP growth rate in 2026?"}
+{"id": "oos-ipl", "type": "out_of_scope", "question": "Which team won the IPL 2025 final?"}
+{"id": "oos-gst", "type": "out_of_scope", "question": "What are the GST return filing deadlines for FY2026?"}
+{"id": "oos-physics", "type": "out_of_scope", "question": "At what temperature does water boil at sea level?"}
