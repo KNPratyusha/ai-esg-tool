@@ -12,8 +12,9 @@ from google import genai
 from google.genai import types
 
 # A stronger model makes a better judge; flash keeps it cheap and matches the
-# app. Swap to "models/gemini-2.5-pro" for higher-fidelity grading.
-JUDGE_MODEL = "models/gemini-2.5-flash"
+# app. Override with GEMINI_JUDGE_MODEL (e.g. "models/gemini-2.5-pro" for
+# higher-fidelity grading, or another model if one is rate-limited).
+JUDGE_MODEL = os.environ.get("GEMINI_JUDGE_MODEL", "models/gemini-2.5-flash")
 
 JUDGE_SYSTEM = """You are a strict evaluation judge for a retrieval-augmented
 generation system used in regulatory compliance. Decide whether an ANSWER is
