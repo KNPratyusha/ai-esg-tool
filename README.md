@@ -113,6 +113,21 @@ This is the part that matters for a regulated domain:
 
 ---
 
+## 📊 Results (preliminary)
+
+Groundedness measured by the [faithfulness eval](evals/) on `gemini-2.5-flash`:
+
+| Metric | Score |
+|--------|-------|
+| Fully grounded — every claim traces to retrieved context (LLM-judge) | **6 / 6 (100%)** |
+| Mean faithfulness score | **1.00** |
+| Answers citing a page / section | **6 / 6 (100%)** |
+| Out-of-scope refusals | _pending full run_ |
+
+> ⚠️ **Preliminary** — a partial run (the free-tier daily quota capped it at 6 of 12 cases), so the out-of-scope *refusal* tests are still pending. Full 12-case scorecard to follow. Reproduce: `python -m evals.faithfulness_eval`.
+
+---
+
 ## 🛠️ Tech stack
 
 `Python 3.11+` · `Google Gemini (google-genai)` · `ChromaDB` · `Sentence-Transformers` · `PyMuPDF` · domain knowledge across **GRI / SASB / BRSR**
@@ -146,7 +161,7 @@ python brsr_assistant/gap_analyser.py  # 4 · Raga — automated gap analysis
 
 ## 🗺️ Roadmap
 
-- [x] **Faithfulness eval harness** — scores answer groundedness + refusal accuracy with an LLM-as-judge → see [`evals/`](evals/). *(run it to populate the scorecard with your numbers)*
+- [x] **Faithfulness eval harness** — scores answer groundedness + refusal accuracy with an LLM-as-judge → see [`evals/`](evals/) and the **preliminary results above**. *(full 12-case scorecard pending free-tier quota reset)*
 - [ ] **Streamlit UI** so non-technical compliance teams can use it.
 - [ ] Extend the grounded corpus beyond BRSR to **GRI** and **SASB**.
 
